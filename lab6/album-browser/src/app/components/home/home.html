@@ -1,0 +1,51 @@
+<!-- HERO -->
+@if (!selectedCategory) {
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="container hero-content">
+      <h1>Best peripherals<br><span class="hero-accent">for your PC</span></h1>
+      <p>Gaming and professional peripherals - from top brands at fair prices</p>
+      <div class="hero-actions">
+        <a (click)="selectCategory(categories[0])"
+           href="javascript:void(0)" class="btn-primary">
+          View catalog
+        </a>
+        <a routerLink="/albums" class="btn-ghost">Browse Albums →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>2 500+</strong><span>Products</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>48ч</strong><span>Delivery</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>5 ★</strong><span>Rating</span></div>
+      </div>
+    </div>
+  </section>
+}
+
+<!-- КАТЕГОРИЯ ВЫБРАНА -->
+@if (selectedCategory) {
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        {{ selectedCategory.icon }} {{ selectedCategory.name }}
+      </h2>
+      <div class="section-header-right">
+        <span class="product-count">{{ visibleProducts.length }} products</span>
+        <button class="btn-home" (click)="goHome()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+            <path d="M9 21V12h6v9"/>
+          </svg>
+          Home
+        </button>
+      </div>
+    </div>
+    <app-product-list
+      [products]="visibleProducts"
+      (deleteProduct)="onDeleteProduct($event)"
+    />
+  </div>
+}

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="section-header">
+    <h2 class="section-title">📷 Photos</h2>
+    <a [routerLink]="['/albums', albumId]" class="btn-home">← Back</a>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Loading photos...</div>
+  }
+
+  <div class="photos-grid">
+    @for (photo of photos; track photo.id) {
+      <div class="photo-card">
+        <img [src]="photo.thumbnailUrl" [alt]="photo.title" />
+        <p class="photo-title">{{ photo.title }}</p>
+      </div>
+    }
+  </div>
+</div>

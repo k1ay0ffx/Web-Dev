@@ -1,0 +1,29 @@
+<div class="container">
+  @if (album) {
+    <div class="detail-card">
+      <div class="section-header">
+        <h2 class="section-title">Album #{{ album.id }}</h2>
+        <a routerLink="/albums" class="btn-home">← Back</a>
+      </div>
+
+      <p class="detail-meta">User ID: {{ album.userId }}</p>
+
+      <div class="edit-block">
+        <label>Title</label>
+        <input [(ngModel)]="editTitle" class="edit-input" />
+        <button class="btn-primary" (click)="save()">Save</button>
+        @if (saved) {
+          <span class="saved-msg">✓ Saved!</span>
+        }
+      </div>
+
+      <div class="detail-actions">
+        <a [routerLink]="['/albums', album.id, 'photos']" class="btn-primary">
+          View Photos
+        </a>
+      </div>
+    </div>
+  } @else {
+    <div class="loading">Loading...</div>
+  }
+</div>
